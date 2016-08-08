@@ -1,0 +1,73 @@
+<!-- index.html -->
+    <!DOCTYPE html>
+    <html>
+    <head>
+	<style>
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	
+	/*background = gradient + image pattern combo*/
+	background: 
+		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+</style>
+      <!-- SCROLLS -->
+      <!-- load bootstrap and fontawesome via CDN -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+      <!-- SPELLS -->
+      <!-- load angular and angular route via CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+          <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+		  {% load staticfiles %}
+      <script src="{% static 'script.js' %}"></script>
+    </head>
+    <body ng-controller="mainController" ng-app="auth1App">
+
+        <!-- HEADER AND NAVBAR -->
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Home Page</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+					{% if 'logged_in' in request.session %}
+					<li><a href="{% url 'logout' %}"><i class="fa fa-comment"></i> Logout</a></li>
+					{% endif %}
+					{% if 'logged_in' not in request.session %}
+                    <li><a href="{% url 'register' %}"><i class="fa fa-shield"></i> Register</a></li>
+                    <li><a href="{% url 'login' %}"><i class="fa fa-comment"></i> Login</a></li>
+					{% endif %}
+                </ul>
+            </div>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+			<!-- [[ message ]] -->
+            <!-- angular templating -->
+            <!-- this is where content will be injected -->
+			<div>
+				{% if error %}
+				<p>{{error}}</p>
+				{% endif %}
+			</div>
+		<script>
+			var static_url = '{{STATIC_URL}}' 
+		</script>
+    </body>
+    </html>

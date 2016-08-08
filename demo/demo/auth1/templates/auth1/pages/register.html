@@ -1,0 +1,30 @@
+
+<style>
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	
+	/*background = gradient + image pattern combo*/
+	background: 
+		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+</style>
+{% block content %}
+    <form method="post" action="auth1/pages/success/">
+	
+        <table border="0">
+         <!--   {{ form.as_table }} -->
+		 <tr><td><a href="{% url 'register_user' %}">Employee</a></td></tr>
+          <tr><td><a href="{% url 'register_department' %}">Department</a></td></tr>
+        </table>
+    </form>
+{% endblock %}
